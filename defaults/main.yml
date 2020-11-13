@@ -1,0 +1,6 @@
+---
+kops_version: v1.18.2
+kubectl_version: v1.19.4
+helm_version: v3.4.1
+terraform_version: "0.13.5"
+packer_version: "1.6.5"

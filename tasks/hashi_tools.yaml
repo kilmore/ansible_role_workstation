@@ -1,0 +1,39 @@
+--- 
+- name: Download and Extract Terraform
+  unarchive:
+    src: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip
+    dest: /usr/local/bin/
+    mode: '0755'
+    remote_src: yes
+
+- name: Terraform Symbolic Link
+  file:
+    src: /usr/local/bin/terraform
+    dest: /usr/bin/terraform
+    state: link
+
+- name: Download and Extract Packer
+  unarchive:
+    src: https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip
+    dest: /usr/local/bin/
+    mode: '0755'
+    remote_src: yes
+
+- name: Packer Symbolic Link
+  file:
+    src: /usr/local/bin/packer
+    dest: /usr/bin/hpacker
+    state: link
+
+- name: Download Terragrunt
+  get_url:
+    url: https://github.com/gruntwork-io/terragrunt/releases/download/v0.25.4/terragrunt_linux_amd64
+    dest: /usr/local/bin/terragrunt
+    mode: '0755'
+
+- name: Terragrunt Symbolic Link
+  file:
+    src: /usr/local/bin/terragrunt
+    dest: /usr/bin/terragrunt
+    state: link
+

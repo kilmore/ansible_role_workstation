@@ -1,0 +1,13 @@
+
+- name: Install packages
+  yum:
+    name:
+      - unzip
+      - git
+      - wget
+      - vim
+      - net-tools
+      - jq
+      - ansible 
+      - python*-pip      
+    state: present

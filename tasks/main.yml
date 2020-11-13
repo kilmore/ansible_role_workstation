@@ -1,0 +1,23 @@
+---
+# tasks file for workstation
+
+# ToDo: GUI Install for Centos
+# ToDo: GUI Install for Ubuntu
+# ToDo: Tools Install for RHEL
+# ToDo: GUI Install for RHEL
+
+
+
+- name: Install Base Packages for Centos
+  include_tasks: centos.yaml
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version > '6'
+
+- name: Install Base Packages for Ubuntu
+  include_tasks: centos.yaml
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version > '18'
+
+- name: Install kubernetes tool
+  include_tasks: kubernetes_tools.yaml
+
+- name: Install hashicorp tool
+  include_tasks: hashi_tools.yaml

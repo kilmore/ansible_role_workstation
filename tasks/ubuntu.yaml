@@ -1,0 +1,14 @@
+--- 
+- name: Install packages Ubuntu
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - unzip
+      - git
+      - wget
+      - vim
+      - net-tools
+      - jq
+      - ansible 
+      - python*-pip 

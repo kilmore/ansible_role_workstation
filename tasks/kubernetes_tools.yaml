@@ -1,0 +1,54 @@
+# KOPS ----------
+- name: KOPs Download
+  get_url:
+    url: "https://github.com/kubernetes/kops/releases/download/{{ kops_version }}/kops-linux-amd64"
+    dest: /usr/local/bin/kops
+    mode: 0755 
+
+- name: KOPs Symbolic Link
+  file:
+    src: /usr/local/bin/kops
+    dest: /usr/bin/kops
+    state: link
+
+# Kubectl -----------
+- name: Kubectl Download
+  get_url:
+    url: "https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl"
+    dest: /usr/local/bin/kubectl
+    mode: 0755 
+
+- name: Kubectl Symbolic Link
+  file:
+    src: /usr/local/bin/kubectl
+    dest: /usr/bin/kubectl
+    state: link
+
+# Helm ----------
+- name: Download and Unpack helm
+  unarchive:
+    src: https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz
+    dest: /tmp/
+    remote_src: yes
+
+- name: Copy Helm
+  copy:
+    src: /tmp/linux-amd64/helm
+    dest: /usr/local/bin/helm
+    mode: '0755'
+    remote_src: yes
+
+- name: Helm Symbolic Link
+  file:
+    src: /usr/local/bin/helm
+    dest: /usr/bin/helm
+    state: link
+
+
+# Install Helm
+# https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz
+
+# curl -o helm.tar.gz  https://get.helm.sh/helm-v3.4.0-rc.1-linux-amd64.tar.gz
+# tar -xzvf helm.tar.gz
+# chmod +x linux-amd64/helm
+# sudo mv linux-amd64/helm /usr/local/bin/
